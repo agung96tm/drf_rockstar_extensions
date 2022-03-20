@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "drf_rockstar_extensions"
+version = "0.1.0"
+description = "Extensions that help your project become rockstar"
+authors = ["Agung Yuliyanto <agung.96tm@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.26.0"
+djangorestframework = "^3.13.0"
+Sphinx = { version="^4.2.0", optional=true }
+sphinx-rtd-theme = { version="^1.0.0", optional=true }
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.extras]
+docs = ["Sphinx", "sphinx-rtd-theme"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
