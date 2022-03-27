@@ -2,7 +2,7 @@ from typing import Mapping
 
 
 def is_safe_action(action):
-    return action.upper() in ['GET']
+    return action.upper() in ["GET"]
 
 
 def get_attribute(instance, attrs):

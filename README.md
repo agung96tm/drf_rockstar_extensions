@@ -7,7 +7,7 @@ Extensions that help your project become rockstar
 DRF Rockstar Extensions is available on PyPI:
 
 ```console
-$ python -m pip install requests
+$ python -m pip install drf_rockstar_extensions
 ```
 
 ### Contributors

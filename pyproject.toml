@@ -19,7 +19,9 @@ Sphinx = { version="^4.2.0", optional=true }
 sphinx-rtd-theme = { version="^1.0.0", optional=true }
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+black = {version = "^21.7b0", python = ">=3.8"}
+flake8 = "^4.0.1"
+pytest-django = "^4.5.2"
 
 [tool.poetry.extras]
 docs = ["Sphinx", "sphinx-rtd-theme"]
