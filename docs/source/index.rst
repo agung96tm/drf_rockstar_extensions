@@ -1,20 +1,13 @@
-.. drf_rockstar_extensions documentation master file, created by
-   sphinx-quickstart on Sun Mar 20 10:55:31 2022.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to drf_rockstar_extensions's documentation!
 ===================================================
+DRF Rockstar Extensions
+===================================================
+
+---------------------------------------------------
+Extensions that help your project become rockstar.
+---------------------------------------------------
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Fields
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   fields/001-fetcher-field
