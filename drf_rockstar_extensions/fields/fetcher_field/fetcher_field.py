@@ -5,13 +5,8 @@ from requests.exceptions import JSONDecodeError  # noqa
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import Field
 
-from drf_rockstar_extensions.fields.fetcher_field.utils.attributes import (
-    get_attribute,
-    is_safe_action,
-)
-from drf_rockstar_extensions.fields.fetcher_field.utils.auths import (
-    get_auth_class_by_name,
-)
+from .attributes import get_attribute, is_safe_action
+from .auths import basic_auth
 
 
 class FetcherField(Field):
@@ -32,7 +27,7 @@ class FetcherField(Field):
         serializer_kwargs=None,
         response_source=None,
         response_source_as_many=None,
-        auth="default",
+        auth=basic_auth,
         auth_kwargs=None,
         *args,
         **kwargs
@@ -89,13 +84,9 @@ class FetcherField(Field):
         return {self.key_params: self.get_params_from_instance(self.params, value)}
 
     def get_auth(self, obj):
-        AuthClass = get_auth_class_by_name(self.auth)
-        if AuthClass is not None:
-            return AuthClass(
-                request=self.context.get("request"),
-                **self.get_params_from_instance(self.auth_kwargs, obj),
-            ).get_auth()
-        return {}
+        if callable(self.auth):
+            return self.auth(self, obj, self.context.get("request"), **self.auth_kwargs)
+        return self.auth or {}
 
     def run_fetcher(self, value):
         response = None
@@ -133,7 +124,7 @@ class FetcherField(Field):
         if self.serializer is not None:
             kwargs = self.serializer_kwargs
             kwargs.setdefault("many", isinstance(value, list))
-            value = self.serializer(value, **kwargs).data
+            value = self.serializer(value, context=self.context, **kwargs).data
         return value
 
     def to_representation(self, value):
