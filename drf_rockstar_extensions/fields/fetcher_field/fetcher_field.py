@@ -5,8 +5,8 @@ from requests.exceptions import JSONDecodeError  # noqa
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import Field
 
+from settings import api_settings
 from .attributes import get_attribute, is_safe_action
-from .auths import basic_auth
 
 
 class FetcherField(Field):
@@ -26,8 +26,8 @@ class FetcherField(Field):
         serializer_as_many=False,
         serializer_kwargs=None,
         response_source=None,
-        response_source_as_many=None,
-        auth=basic_auth,
+        response_source_in_list=None,
+        auth=None,
         auth_kwargs=None,
         *args,
         **kwargs
@@ -48,9 +48,9 @@ class FetcherField(Field):
 
         self.target_source = self.init_source(target_source)
         self.response_source = self.init_source(response_source)
-        self.response_source_as_many = response_source_as_many
+        self.response_source_in_list = response_source_in_list
 
-        self.auth = auth
+        self.auth = auth or api_settings.DEFAULT_FETCHER_FIELD_AUTH
         self.auth_kwargs = auth_kwargs or {}
 
         kwargs["source"] = "*"  # force entire object passed to field
@@ -68,9 +68,7 @@ class FetcherField(Field):
     def get_params_from_instance(cls, params, instance):
         for key, value in params.items():
             value_from_attributes = get_attribute(instance, [value])
-            params[key] = (
-                value_from_attributes if value_from_attributes is not None else value
-            )
+            params[key] = value_from_attributes or value
         return params
 
     def get_url(self, value):
@@ -114,7 +112,7 @@ class FetcherField(Field):
 
     def run_response_source(self, value):
         if self.response_source is not None:
-            if self.response_source_as_many:
+            if self.response_source_in_list:
                 value = [get_attribute(v, self.response_source) for v in value]
             else:
                 value = get_attribute(value, self.response_source)

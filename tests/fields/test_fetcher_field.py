@@ -137,7 +137,7 @@ class FetcherFieldTest(TestCase):
             path_params={"user_id": "user_id"},
             target_source="data",
             response_source="user",
-            response_source_as_many=True,
+            response_source_in_list=True,
             serializer=UserSerializer,
             serializer_kwargs={
                 "partial": True,
