@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "drf_rockstar_extensions"
-version = "0.0.3"
+version = "0.0.4"
 description = "Extensions that help your project become rockstar"
 authors = ["Agung Yuliyanto <agung.96tm@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/agung96tm/drf_rockstar_extensions"
+homepage = "https://drf-rockstar-extensions.readthedocs.io"
 repository = "https://github.com/agung96tm/drf_rockstar_extensions"
 documentation = "https://drf-rockstar-extensions.readthedocs.io"
 include = [
