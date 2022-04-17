@@ -15,7 +15,7 @@ Installation
 ------------
 DRF Rockstar Extensions can be installed with pip::
 
-  pip install drf_rockstar_extensions
+  pip install drf-rockstar-extensions
 
 
 ------------
