@@ -5,7 +5,7 @@ from requests.exceptions import JSONDecodeError  # noqa
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import Field
 
-from settings import api_settings
+from drf_rockstar_extensions.settings import api_settings
 from .attributes import get_attribute, is_safe_action
 
 

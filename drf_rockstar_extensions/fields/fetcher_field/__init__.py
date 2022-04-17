@@ -1,4 +1,4 @@
-__all__ = ["FetcherField", "get_attribute", "is_safe_action"]
+__all__ = ["FetcherField", "get_attribute", "is_safe_action", "basic_auth"]
 
 
 from .fetcher_field import FetcherField

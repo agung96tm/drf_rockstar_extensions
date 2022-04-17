@@ -3,22 +3,20 @@ from django.test.signals import setting_changed
 from rest_framework.settings import APISettings
 
 
-USER_SETTINGS = getattr(settings, 'DRF_ROCKSTAR', None)
+USER_SETTINGS = getattr(settings, "DRF_ROCKSTAR", None)
 
 DEFAULTS = {
-    'DEFAULT_FETCHER_FIELD_AUTH': 'drf_rockstar_extensions.fields.fetcher_field.basic_auth'
+    "DEFAULT_FETCHER_FIELD_AUTH": "drf_rockstar_extensions.fields.fetcher_field.basic_auth"
 }
 
-IMPORT_STRINGS = [
-    'DEFAULT_FETCHER_FIELD_AUTH'
-]
+IMPORT_STRINGS = ["DEFAULT_FETCHER_FIELD_AUTH"]
 
 
 class RockstarSettings(APISettings):
     @property
     def user_settings(self):
-        if not hasattr(self, '_user_settings'):
-            self._user_settings = getattr(settings, 'DRF_ROCKSTAR_EXTENSIONS', {})
+        if not hasattr(self, "_user_settings"):
+            self._user_settings = getattr(settings, "DRF_ROCKSTAR_EXTENSIONS", {})
         return self._user_settings
 
     def __check_user_settings(self, user_settings):

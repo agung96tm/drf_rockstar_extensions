@@ -16,15 +16,16 @@ include = [
 python = "^3.8"
 requests = "^2.26.0"
 djangorestframework = "^3.13.0"
-Sphinx = { version="^4.2.0", optional=true }
-sphinx-rtd-theme = { version="^1.0.0", optional=true }
 
 [tool.poetry.dev-dependencies]
 black = {version = "^21.7b0", python = ">=3.8"}
 flake8 = "^4.0.1"
 pytest-django = "^4.5.2"
+Sphinx = { version="^4.2.0", optional=true }
+sphinx-rtd-theme = { version="^1.0.0", optional=true }
 
 [tool.poetry.extras]
+test = ["black", "flake8"]
 docs = ["Sphinx", "sphinx-rtd-theme"]
 
 [build-system]
