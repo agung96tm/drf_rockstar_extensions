@@ -1,0 +1,30 @@
+name: Upload to PIP
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  upload:
+    name: Test and Upload
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set Up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Poetry Image
+        uses: abatilo/actions-poetry@v2.0.0
+        with:
+          poetry-version: 1.1.11
+      - name: Poetry Install
+        run: poetry install
+      - name: Poetry Test
+        run: poetry run pytest
+      - name: Poetry Publish
+        env:
+          PYPI_USERNAME: __token__
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: poetry publish --build --username $PYPI_USERNAME --password $PYPI_TOKEN
