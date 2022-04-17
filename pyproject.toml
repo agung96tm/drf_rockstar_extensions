@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "drf_rockstar_extensions"
-version = "0.0.1"
+version = "0.0.3"
 description = "Extensions that help your project become rockstar"
 authors = ["Agung Yuliyanto <agung.96tm@gmail.com>"]
 license = "MIT"
